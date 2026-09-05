@@ -328,12 +328,12 @@ export const TRANSLATIONS = {
     authFooter: 'Official Action Memo: Simulated Section Controller Authorization recorded under Indian Railways General & Subsidiary Rules.',
     authorizedBy: 'Authorized by: Senior Section Controller — CNB Division',
 
-    tabCockpit: 'Planning Cockpit (Marey & Gantt)',
-    tabGateway: 'Data-Quality Center',
-    tabOpportunities: 'Look-Ahead Bundling',
-    tabComparison: 'Plan Comparison',
-    tabEmergency: 'Disruption Simulator',
-    tabAudit: 'Audit Log'
+    tabCockpit: 'Train Schedule & Blocks',
+    tabGateway: 'Data Screening (29 Cleaned)',
+    tabOpportunities: 'Bundling Opportunities',
+    tabComparison: 'Compare Plans & ROI',
+    tabEmergency: 'Emergency Fracture Re-plan',
+    tabAudit: 'Official e-Memo Trail'
   },
   hi: {
     headline: 'भारतीय रेल में स्वचालित ब्लॉक योजना — ट्रेनों की समयबद्धता और ट्रैक सुरक्षा का संतुलन।',
