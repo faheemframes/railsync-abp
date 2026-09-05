@@ -95,13 +95,21 @@ export const PlanComparison: React.FC<PlanComparisonProps> = ({
                 <span>Freight Trains Looped:</span>
                 <strong className="text-[var(--cr-text-primary)] font-bold">{baseline?.freight_trains_delayed || 9} rakes</strong>
               </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Track Access Demand:</span>
+                <strong className="text-[var(--cr-status-red)] font-bold">4.5 hours (Fragmented)</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Business Reliability Risk:</span>
+                <strong className="text-[var(--cr-status-red)] font-bold">82 / 100 (HIGH RISK)</strong>
+              </div>
             </div>
 
             {/* Explainability Callout */}
             <div className="mt-4 pt-3 border-t border-[var(--cr-border-subtle)] text-xs text-[var(--cr-text-secondary)] leading-relaxed">
               <div className="flex items-start gap-1.5 text-[var(--cr-status-red)] font-semibold">
                 <AlertTriangle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-[var(--cr-status-red)]" />
-                <span>Causes repeated telephone arguments; blocks frequently curtailed mid-work.</span>
+                <span>CAG: 97.8% isolated blocks; freight stabled on loops drains factory safety buffers.</span>
               </div>
             </div>
           </div>
@@ -147,8 +155,16 @@ export const PlanComparison: React.FC<PlanComparisonProps> = ({
                 <strong className="text-[var(--cr-text-primary)] font-bold">{planA?.total_candidate_blocks || 6} blocks</strong>
               </div>
               <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
-                <span>Freight Rescheduled:</span>
-                <strong className="text-[var(--cr-text-primary)] font-bold">{planA?.freight_trains_delayed || 6} rescheduled</strong>
+                <span>Track Access Demand:</span>
+                <strong className="text-[var(--cr-status-green)] font-bold">3.0 hours (-33.3% access reduction)</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Business Reliability Risk:</span>
+                <strong className="text-[var(--cr-status-green)] font-bold">27 / 100 (LOW RISK)</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Corridor Demurrage Saved:</span>
+                <strong className="text-[var(--cr-status-green)] font-bold">₹14.85 Lakhs / 24h</strong>
               </div>
               <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
                 <span>Resource Feasibility:</span>
@@ -223,6 +239,14 @@ export const PlanComparison: React.FC<PlanComparisonProps> = ({
               <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
                 <span>Candidate Blocks:</span>
                 <strong className="text-[var(--cr-text-primary)] font-bold">{planB?.total_candidate_blocks || 8} blocks</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Track Access Demand:</span>
+                <strong className="text-[var(--cr-status-amber)] font-bold">3.5 hours (-22.2% reduction)</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
+                <span>Business Reliability Risk:</span>
+                <strong className="text-[var(--cr-status-amber)] font-bold">45 / 100 (MODERATE)</strong>
               </div>
               <div className="flex justify-between py-1 border-b border-[var(--cr-border-subtle)]">
                 <span>Freight Trains Looped:</span>

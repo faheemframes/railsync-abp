@@ -7,6 +7,7 @@ import {
   FileCheck,
   Play,
   BookOpen,
+  FileText,
   Compass,
   Sun,
   Moon
@@ -26,6 +27,7 @@ interface HeaderProps {
   setViewMode: (mode: 'story' | 'console') => void;
   onLaunchDemo: () => void;
   onOpenGlossary: () => void;
+  onOpenResearchAudit: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
 }
@@ -41,6 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
   setViewMode,
   onLaunchDemo,
   onOpenGlossary,
+  onOpenResearchAudit,
   theme,
   onToggleTheme
 }) => {
@@ -152,6 +155,21 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
             <span className="text-xs font-bold px-1.5 py-0.2 rounded bg-[var(--cr-status-amber-bg)] text-[var(--cr-status-amber)]">
               14
+            </span>
+          </button>
+
+          {/* Research & Audit Evidence Trigger */}
+          <button
+            onClick={onOpenResearchAudit}
+            className="cr-btn-secondary text-xs"
+            title="Open Official CAG & Railway Audit Research"
+          >
+            <FileText className="w-3.5 h-3.5 text-[var(--cr-status-green)]" />
+            <span className="hidden lg:inline">
+              {language === 'hi' ? 'ऑडिट साक्ष्य' : (language === 'ta' ? 'தணிக்கை' : 'Audit Proof')}
+            </span>
+            <span className="text-xs font-bold px-1.5 py-0.2 rounded bg-[var(--cr-status-green-bg)] text-[var(--cr-status-green)]">
+              CAG
             </span>
           </button>
 

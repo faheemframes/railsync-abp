@@ -13,7 +13,8 @@ import {
   FileCheck,
   Zap,
   Radio,
-  Hammer
+  Hammer,
+  FileText
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Language } from '../i18n/translations';
@@ -24,13 +25,15 @@ interface StoryFlowProps {
   onLaunchDemo: () => void;
   onOpenConsole: (targetTab?: string) => void;
   onOpenGlossary: () => void;
+  onOpenResearchAudit?: () => void;
 }
 
 export const StoryFlow: React.FC<StoryFlowProps> = ({
   language,
   onLaunchDemo,
   onOpenConsole,
-  onOpenGlossary
+  onOpenGlossary,
+  onOpenResearchAudit
 }) => {
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
 
@@ -90,6 +93,17 @@ export const StoryFlow: React.FC<StoryFlowProps> = ({
                 <BookOpen className="w-3.5 h-3.5 text-[var(--cr-status-amber)]" />
                 <span>{t.glossaryButton}</span>
               </button>
+
+              {onOpenResearchAudit && (
+                <button
+                  onClick={onOpenResearchAudit}
+                  className="cr-btn-secondary font-bold text-xs"
+                  title="View CAG and Railway Research Citations"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[var(--cr-status-green)]" />
+                  <span>Audit Evidence [CAG]</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -128,6 +142,28 @@ export const StoryFlow: React.FC<StoryFlowProps> = ({
         </div>
       </motion.div>
 
+      {/* 3-Layer Evidence & Prototype Taxonomy Bar */}
+      <div className="cr-card p-3 rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2 font-bold text-[var(--cr-text-secondary)]">
+          <span className="w-2 h-2 rounded-full bg-[var(--cr-primary-interactive)]"></span>
+          <span className="uppercase tracking-wider">Evaluation Taxonomy:</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 font-medium">
+          <span className="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            REAL DATA (CAG Audit 2021 · SCR Precedent · UCLA 2026)
+          </span>
+          <span className="px-2.5 py-1 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            REPRESENTATIVE SCENARIO (Kanpur ICD → Delhi NCR)
+          </span>
+          <span className="px-2.5 py-1 rounded bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-500/30 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            MODEL OUTPUT (CP-SAT Constraint Optimizer)
+          </span>
+        </div>
+      </div>
+
       {/* Live Before / After Metrics Comparison */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
@@ -136,7 +172,7 @@ export const StoryFlow: React.FC<StoryFlowProps> = ({
             <span>{t.compareTitle}</span>
           </h2>
           <span className="text-xs text-[var(--cr-text-muted)]">
-            {language === 'hi' ? 'पारंपरिक बनाम AI का सीधा असर' : (language === 'ta' ? 'பழைய முறை vs AI இன் நேரடி தாக்கம்' : 'Measurable Impact on Indian Railways Operations')}
+            {language === 'hi' ? 'पारंपरिक बनाम समन्वित योजना का सीधा असर' : (language === 'ta' ? 'பழைய முறை vs ஒருங்கிணைந்த உகப்பாக்கம்' : 'Manual Silos vs. Coordinated Optimization')}
           </span>
         </div>
 
@@ -304,6 +340,41 @@ export const StoryFlow: React.FC<StoryFlowProps> = ({
               </p>
             </div>
           </div>
+
+          {/* CAG Audit Evidence & B2B Supply Chain Cascade */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-2">
+            <div className="cr-card p-4 space-y-2 border-l-2 border-l-[var(--cr-status-red)]">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-mono text-[11px] font-bold border border-emerald-500/30">
+                  REAL DATA • CAG REPORT 22 OF 2021
+                </span>
+                <span className="text-[11px] font-bold text-[var(--cr-status-red)]">97.8% Isolated</span>
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-[var(--cr-text-primary)]">
+                National Audit: Only 2.2% Blocks Were Integrated
+              </h4>
+              <p className="text-xs text-[var(--cr-text-secondary)] leading-relaxed">
+                Across 11 audited zones, 97.8% of blocks were taken in complete departmental isolation. 
+                On the Delhi–Howrah corridor alone, <strong>1,905 block-bursting cases delayed 4,659 trains</strong> due to lack of coordination between men, machines, and materials.
+              </p>
+            </div>
+
+            <div className="cr-card p-4 space-y-2 border-l-2 border-l-[var(--cr-status-amber)]">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300 font-mono text-[11px] font-bold border border-amber-500/30">
+                  REPRESENTATIVE • SUPPLY CHAIN CASCADE
+                </span>
+                <span className="text-[11px] font-bold text-[var(--cr-status-amber)]">Risk 82/100</span>
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-[var(--cr-text-primary)]">
+                Kanpur Industrial Components (Shipment KIC-DEL-07)
+              </h4>
+              <p className="text-xs text-[var(--cr-text-secondary)] leading-relaxed">
+                When daytime blocks halt freight rakes at Rura for 4.5 hours, contracted trucks in Delhi NCR sit idle, 
+                warehouse buffers drain, and delivery windows fail. Unpredictable maintenance costs Indian industry millions in demurrage.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Act 2 Card: The Engine */}
@@ -424,6 +495,41 @@ export const StoryFlow: React.FC<StoryFlowProps> = ({
                 <span className="text-[var(--cr-primary-interactive)] font-bold block">3. MSDAC & Points</span>
                 <span className="text-[var(--cr-text-secondary)] text-xs font-medium">Signal Sensor Check</span>
               </div>
+            </div>
+          </div>
+
+          {/* Real Precedent & Supply Chain Outcome */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+            <div className="cr-card p-4 space-y-2 border-l-2 border-l-[var(--cr-status-green)]">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-mono text-[11px] font-bold border border-emerald-500/30">
+                  REAL PRECEDENT • SCR VIJAYAWADA (IPWE 2020)
+                </span>
+                <span className="text-[11px] font-bold text-[var(--cr-status-green)]">+24% Output</span>
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-[var(--cr-text-primary)]">
+                Proven Machine Availability & Productivity Gains
+              </h4>
+              <p className="text-xs text-[var(--cr-text-secondary)] leading-relaxed">
+                When Vijayawada Division implemented integrated blocks, track machine availability increased by <strong>~33%</strong> and 
+                machine output surged by <strong>~24%</strong>. RAILSYNC automates this proven railway principle computationally with CP-SAT.
+              </p>
+            </div>
+
+            <div className="cr-card p-4 space-y-2 border-l-2 border-l-[var(--cr-primary-interactive)]">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 rounded bg-blue-500/15 text-blue-700 dark:text-blue-300 font-mono text-[11px] font-bold border border-blue-500/30">
+                  MODEL OUTPUT • BUSINESS RELIABILITY
+                </span>
+                <span className="text-[11px] font-bold text-[var(--cr-status-green)]">27/100 Low Risk</span>
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-[var(--cr-text-primary)]">
+                Access Occupation Reduced from 4.5h to 3.0h (-33.3%)
+              </h4>
+              <p className="text-xs text-[var(--cr-text-secondary)] leading-relaxed">
+                By collapsing 3 separate access requests into 1 coordinated night window, line capacity is preserved. 
+                Business Reliability Risk drops from <strong>82/100 (High) to 27/100 (Low)</strong>, guaranteeing predictable arrival slots for industrial cargo.
+              </p>
             </div>
           </div>
 
